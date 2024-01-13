@@ -12,7 +12,7 @@ const transporter = nodemailer.createTransport({
 const mailOptions = {
   from: 'touhamiihossy@gmail.com',
   to: 'touhamihoussem079@gmail.com',
-  subject: 'Test Email with Ethereal',
+  subject: 'Test Email with houssem',
   text: 'Certainly! A sticky header is a common feature on websites where the header remains fixed at the top of the page as the user scrolls down. Here',
 };
 
