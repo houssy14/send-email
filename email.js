@@ -1,38 +1,28 @@
 const nodemailer = require('nodemailer');
 
+// Create a Nodemailer transporter with Ethereal SMTP details
 const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: 'your-email@gmail.com',
-        pass: 'your-email-password'
-    }
+  host: 'smtp.ethereal.email',
+  port: 587,
+  auth: {
+    user: 'eloisa.conroy49@ethereal.email',
+    pass: 'F4ZsXJ7Eb9xKWwUpqV',
+  },
 });
+const mailOptions = {
+  from: 'touhamiihossy@gmail.com',
+  to: 'touhamihoussem079@gmail.com',
+  subject: 'Test Email with Ethereal',
+  text: 'Certainly! A sticky header is a common feature on websites where the header remains fixed at the top of the page as the user scrolls down. Here',
+};
 
-function sendEmail(to, subject, text, callback) {
-    const mailOptions = {
-        from: 'houssy27@gmail.com',
-        to: 'touhamihoussem079@gmail.com',
-        subject: 'esay way',
-        text: "hello world"
-    };
+transporter.sendMail(mailOptions, (error, info) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('Email sent: ' + info.response);
 
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            callback(error);
-        } else {
-            callback(null, info.messageId);
-        }
-    });
-}
-
-app.post('/send-email', (req, res) => {
-    const { to, subject, text } = req.body;
-
-    sendEmail(to, subject, text, (error, messageId) => {
-        if (error) {
-            res.status(500).send(error);
-        } else {
-            res.status(200).send(`Email sent successfully. Message ID: ${messageId}`);
-        }
-    });
+    // Log Ethereal link to view the sent email
+    console.log('Preview URL: ' + nodemailer.getTestMessageUrl(info));
+  }
 });
